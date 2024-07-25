@@ -14,7 +14,7 @@ namespace JobPortal.Services
             _context = context;
         }
         //fetch job
-        public async Task<Job> CreateJob(JobModel job)
+        public async Task<Job> CreateJob(Job job)
         {
             try
             {
@@ -23,7 +23,8 @@ namespace JobPortal.Services
                 if (company == null)
                 {
                     throw new Exception($"company with Id {job.CompanyId} does not exist");
-                }job.TimeStamp= DateTime.Now;
+                }
+                job.PostedDate= DateTime.Now;
                 _context.Add(company);
                 _context.SaveChanges();
                 return job;
@@ -31,7 +32,7 @@ namespace JobPortal.Services
             }
             catch (Exception ex)
             {
-
+                throw new Exception("Create Job Failed");
             }
 
         }

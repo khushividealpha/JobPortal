@@ -2,7 +2,7 @@
 
 namespace JobPortal.Models
 {
-    public class Job
+    public class JobModel
     {
         public int JobId { get; set; }
         public string Title { get; set; } = "";

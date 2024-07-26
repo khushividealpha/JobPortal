@@ -5,21 +5,21 @@ namespace JobPortal.Data
 {
     public class ApplicationDbContext:DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> dbContextOption)
-        {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> dbContextOption):base(dbContextOption) { }
+     
 
-        }
-        public DbSet<Models.Job> Job { get; set; }
-        public DbSet<Models.Company> Company { get; set; }
+        
+        public DbSet<Models.JobModel> Job { get; set; }
+        public DbSet<Models.CompanyModel> Company { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Job>().HasKey(j => j.JobId);
-            modelBuilder.Entity<Job>().ToTable("jobs");
-            modelBuilder.Entity<Company>().Property(u => u.CompanyId).HasConversion<int>();
+            modelBuilder.Entity<JobModel>().HasKey(j => j.JobId);
+            modelBuilder.Entity<JobModel>().ToTable("jobs");
+            modelBuilder.Entity<CompanyModel>().Property(u => u.CompanyId).HasConversion<int>();
 
-            modelBuilder.Entity<Company>().HasKey(c=>c.CompanyId);
-            modelBuilder.Entity<Company>().ToTable("company");
+            modelBuilder.Entity<CompanyModel>().HasKey(c=>c.CompanyId);
+            modelBuilder.Entity<CompanyModel>().ToTable("company");
 
         }
     }
